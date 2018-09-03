@@ -45,9 +45,7 @@
         <article class="person">
             <h2></h2>
             <img src="" alt=""><br>
-            mail: <a class="data-mail" href=""></a><br>
-            github: <span class="data-github"></span><br>
-            tlf: <span class="data-tlf"></span><br>
+            Status: <span class="data-civilstatus"></span><br>
         </article>
     </template>
 
@@ -70,10 +68,8 @@
                 //indsæt data i klonen
                 klon.querySelector("h2").textContent = person.navn;
                 klon.querySelector("img").src = person.billede;
-                klon.querySelector(".data-github").textContent = person.github;
-                klon.querySelector(".data-tlf").textContent = person.tlf;
-                klon.querySelector(".data-mail").textContent = person.mail;
-                klon.querySelector(".data-mail").href = "mailto:" + person.mail;
+                klon.querySelector(".data-civilstatus").textContent = person.civilstatus;
+
                 //placer klon i DOM
                 dest.appendChild(klon);
             })

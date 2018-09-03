@@ -33,26 +33,39 @@
         }
 
         s
-
     </style>
 </head>
 
+
+
 <body>
+
+    <header>
+        <nav>
+
+            <button class="menu-item" data-civilstatus="alle">Alle personer</button>
+            <button class="menu-item" data-civilstatus="single">Singler</button>
+            <button class="menu-item" data-civilstatus="optaget">I forhold</button>
+
+        </nav>
+
+    </header>
     <main class="container">
         <section class="data-container"></section>
+
     </main>
+
     <template class="data-template">
         <article class="person">
             <h2></h2>
             <img src="" alt=""><br>
-            mail: <a class="data-mail" href=""></a><br>
-            github: <span class="data-github"></span><br>
-            tlf: <span class="data-tlf"></span><br>
+            Status: <span class="data-civilstatus"></span><br>
         </article>
     </template>
 
     <script>
-        let personer;
+        let personer,
+            civilFilter = "single";
         document.addEventListener("DOMContentLoaded", hentJson);
 
         async function hentJson() {
@@ -66,19 +79,19 @@
                 temp = document.querySelector(".data-template");
             //løb personlisten igennem og lav en klon
             personer.forEach(person => {
-                let klon = temp.cloneNode(true).content;
-                //indsæt data i klonen
-                klon.querySelector("h2").textContent = person.navn;
-                klon.querySelector("img").src = person.billede;
-                klon.querySelector(".data-github").textContent = person.github;
-                klon.querySelector(".data-tlf").textContent = person.tlf;
-                klon.querySelector(".data-mail").textContent = person.mail;
-                klon.querySelector(".data-mail").href = "mailto:" + person.mail;
-                //placer klon i DOM
-                dest.appendChild(klon);
+                if (person.civilstatus == civilFilter) {
+
+                    let klon = temp.cloneNode(true).content;
+                    //indsæt data i klonen
+                    klon.querySelector("h2").textContent = person.navn;
+                    klon.querySelector("img").src = person.billede;
+                    klon.querySelector(".data-civilstatus").textContent = person.civilstatus;
+
+                    //placer klon i DOM
+                    dest.appendChild(klon);
+                }
             })
         }
-
     </script>
 </body>
 
